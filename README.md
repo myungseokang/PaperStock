@@ -2,7 +2,7 @@
 ###Flask Study
 
 
-모의주식 투자 웹
+모의주식 투자 웹입니다.
 
 ```python
 def hello():
