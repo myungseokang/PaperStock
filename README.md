@@ -6,11 +6,11 @@
 
 ####1. 등록
   - 회원가입
-    - 로그인 with Facebook
-    - 마이페이지
-    - 나의 순위
-    - 주식 관리
-    - 현재 잔고
+  - 로그인 with Facebook
+  - 마이페이지
+  - 나의 순위
+  - 주식 관리
+  - 현재 잔고
 		  
 ####2. 주식 거래
   - 주식 구매
@@ -39,3 +39,37 @@
   - 상위권 10명의 유저 순위
     - 칭호 부여
   - 순위에 따른 보상
+
+
+##UI Mockup
+
+###Frontend
+ - base.html => 모든 페이지에 기반
+ - index.html => 로그인(with Facebook) 폼, 간단한 설명(Facebook 연동?!) => /index
+ - main.html => 주식의 정보들, 상위권 유저 순위+돈, 로그아웃(API+DB) => /main
+ - mypage.html => 현재 잔고, 보유 주식, 총합 돈, 내 순위, 로그아웃(DB) => /mypage
+ - guide.html => 초보자들을 위한 전반적인 가이드 /guide
+ - variable.html => 변동값들을 보여주는 페이지 => /variable
+
+###Backend
+ - 로그인 처리 => /login
+ - 주식 정보들을 가져오는 곳 => /stock_info
+ - 그래프 정보를 가져오는 곳 => /stock_graph
+ - 주식 매수, 매입 => /stock_buy, /stock_sell
+ - 뉴스 정보 가져오는 곳 => /stock_news
+
+
+
+##Server Mockup
+
+ - Python, Flask 사용
+ - 모의주식 API 사용
+ - 처음 들어오면 로그인 화면과 간단한 소개 페이지 띄워줌
+ - (DB 연동) 회원가입을 하고 로그인을 하면 메인 페이지로 넘어감
+ - (CronTab?!)일정 시간마다 갱신해줌
+ - (Flask)처음 들어오면 로그인 화면과 간단한 소개 페이지 띄워줌
+ - (DB연동) 회원가입을 하고 로그인을 하면 메인 페이지로 넘어감
+ - (API) 주식 구매, 판매 api 사용
+ - (API) 주식의 여러 정보
+ - (DB 연동) 칭호 부여 + 보상
+ - (API) 그래프 그리기
