@@ -6,7 +6,7 @@
 
 ####1. 등록
   - 회원가입
-  - 로그인 with Facebook
+  - 로그인
   - 마이페이지
   - 나의 순위
   - 주식 관리
@@ -45,7 +45,7 @@
 
 ###Frontend
  - base.html => 모든 페이지에 기반
- - index.html => 로그인(with Facebook) 폼, 간단한 설명(Facebook 연동?!) => /index
+ - index.html => 로그인 폼, 간단한 설명 => /index
  - main.html => 주식의 정보들, 상위권 유저 순위+돈, 로그아웃(API+DB) => /main
  - mypage.html => 현재 잔고, 보유 주식, 총합 돈, 내 순위, 로그아웃(DB) => /mypage
  - guide.html => 초보자들을 위한 전반적인 가이드 /guide
