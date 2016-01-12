@@ -10,7 +10,8 @@
             </div>
             <div id="content">
                 Hello <strong>{{ request.cookies.get('id') }}</strong> !!
-                현재 잔고는 {{ request.cookies.get('money') }}
+                <p>현재 잔고는 {{ request.cookies.get('money') }} 원입니다</p>
+                <p>{{ nse }}</p>
             </div>
         </div>
     </body>
