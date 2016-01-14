@@ -55,11 +55,16 @@ def user_search():
 
 
 def cookie():
-    username = request.cookies.get('id')
-    if username:
-        return username
+    have_cookie = request.cookies
+    if have_cookie:
+        return have_cookie
     else:
         return None
+
+
+@app.errorhandler(404)
+def not_found():
+    return render_template('error.html'), 404
 
 
 @app.route('/')
@@ -99,13 +104,22 @@ def register():
             try:
                 db.session.commit()
             except IntegrityError:
-                return 'failed', 400
+                return '중복된 ID 입니다.', 400
             resp = make_response(redirect(url_for("index")))
             resp.set_cookie('id', new.id)
             resp.set_cookie('money', new.money)
             return resp
     else:
         return render_template('register.html')
+
+
+@app.route('/logout')
+def logout():
+    if request.method == 'GET' and cookie():
+        resp = make_response(redirect(url_for('login')))
+        return resp
+    else:
+        return 'Error'
 
 
 @app.route("/search/<idx>/<pw>")

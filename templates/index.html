@@ -9,9 +9,14 @@
                 <h1>Welcome!</h1>
             </div>
             <div id="content">
-                Hello <strong>{{ request.cookies.get('id') }}</strong> !!
-                <p>현재 잔고는 {{ request.cookies.get('money') }} 원입니다</p>
-                <p>{{ nse }}</p>
+                {% if request.cookies %}
+                    <form method="post" action="{{ url_for('logout') }}">
+                        Hello <strong>{{ request.cookies.get('id') }}</strong> !!
+                        <p>현재 잔고는 {{ request.cookies.get('money') }} 원입니다</p>
+                        <p>{{ nse }}</p>
+                        <a href="/logout"><input type="button" value="Logout"/></a>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </body>
