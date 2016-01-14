@@ -1,4 +1,3 @@
-from datetime import datetime
 from flask import (
     render_template,
     request,
@@ -7,37 +6,23 @@ from flask import (
     Flask,
     make_response,
 )
-
-from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from flask_sqlalchemy import SQLAlchemy
-
-from sqlalchemy.exc import IntegrityError
 from nsetools import Nse
+from sqlalchemy.exc import IntegrityError
+
+from admin import admin
+from db import db
+from models.user import User
 
 nse = Nse()
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-app.config['SECRET_KEY'] = 'asldjalkaonsjdklasd'
-admin = Admin(app)
-db = SQLAlchemy(app)
 
+app.config.from_pyfile('configs.py')
 
-class User(db.Model):
-    """
-    from test import db
-    db.create_all()
-    """
-    __tablename__ = "user"
+admin.init_app(app)
 
-    idx = db.Column(db.Integer, primary_key=True)
-    id = db.Column(db.String(30), unique=True)
-    pw = db.Column(db.String(30))
-    money = db.Column(db.Integer, default=10000000)
-    created = db.Column(db.DateTime, default=datetime.now)
-
-    # no __init__()
+db.init_app(app)
 
 
 admin.add_view(ModelView(User, db.session))
@@ -70,7 +55,9 @@ def not_found():
 @app.route('/')
 def index():
     if cookie():
-        return render_template('index.html', nse=nse)
+        # stock_list = nse.get_index_list()
+        q = nse.get_quote('infy')
+        return render_template('index.html', nse=q)
     else:
         return render_template('login.html')
 
@@ -120,6 +107,17 @@ def logout():
         return resp
     else:
         return 'Error'
+
+
+@app.route('/stock')
+def stock():
+    if request.method == 'POST':
+        if request.form['mode'] == 'buy':
+            return ''
+        else:
+            return ''
+    else:
+        return ''
 
 
 @app.route("/search/<idx>/<pw>")

@@ -11,8 +11,8 @@
             <div id="content">
                 {% if request.cookies %}
                     <form method="post" action="{{ url_for('logout') }}">
-                        Hello <strong>{{ request.cookies.get('id') }}</strong> !!
-                        <p>현재 잔고는 {{ request.cookies.get('money') }} 원입니다</p>
+                        안녕하세요! <strong>{{ request.cookies.get('id') }}님</strong> !!
+                        <p>현재 잔고는 <strong>{{ request.cookies.get('money') }}원</strong>입니다</p>
                         <p>{{ nse }}</p>
                         <a href="/logout"><input type="button" value="Logout"/></a>
                     </form>
